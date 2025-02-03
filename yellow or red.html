@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buzzer Game</title>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
     <style>
         body {
             text-align: center;
@@ -48,47 +46,11 @@
         <button class="buzzer yellow" onclick="buzz('YELLOW')">Yellow Buzzer</button>
     </div>
     <p id="result"></p>
-    <audio id="buzzSound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
+    <audio id="buzzSound" src="https://www.myinstants.com/media/sounds/bi-online-audio-converter.mp3"></audio>
     <script>
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey"AIzaSyDvMKvdgOKSIDBtuZ9IUxNCF0tOv3eJR2Y"
-            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-            databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
-            projectId: "
-660373772576",
-            storageBucket:"660373772576.appspot.com",
-            messagingSenderId: "660373772576",
-            appId: "
-yellow-or-red"
-        };
-
-        // Ensure Firebase initializes before using database
-        let database;
-        if (!firebase.apps.length) {
-            const app = firebase.initializeApp(firebaseConfig);
-            database = firebase.database();
-        } else {
-            database = firebase.app().database();
-        }
-        
         function buzz(color) {
-            if (database) {
-                database.ref("buzzer").set({
-                    pressedBy: color.toUpperCase(),
-                    timestamp: Date.now()
-                });
-            }
-        }
-
-        if (database) {
-            database.ref("buzzer").on("value", (snapshot) => {
-                const data = snapshot.val();
-                if (data) {
-                    document.getElementById("result").textContent = data.pressedBy + " PRESSED!";
-                    document.getElementById("buzzSound").play();
-                }
-            });
+            document.getElementById("result").textContent = color + " PRESSED!";
+            document.getElementById("buzzSound").play();
         }
     </script>
 </body>
