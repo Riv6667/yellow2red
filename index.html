@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    </head>
+<body>
+    <audio id="redBuzzSound" src="https://www.myinstants.com/media/sounds/airhorn-sound-effect.mp3"></audio>
+    <audio id="yellowBuzzSound" src="https://www.myinstants.com/media/sounds/bi-online-audio-converter.mp3"></audio>
+
+    <script>
+        let redPressed = false;
+        let yellowPressed = false;
+        let redBuzzSound;
+        let yellowBuzzSound;
+
+        // Wait for the DOM to fully load before getting audio elements
+        window.addEventListener('DOMContentLoaded', (event) => {
+            redBuzzSound = document.getElementById("redBuzzSound");
+            yellowBuzzSound = document.getElementById("yellowBuzzSound");
+        });
+
+
+        function buzz(color) {
+            if (color === "RED" && !redPressed && redBuzzSound) {  // Check if loaded
+                document.getElementById("result").textContent = color + " PRESSED!";
+                redBuzzSound.play();
+                redPressed = true;
+                disableButtons();
+            } else if (color === "YELLOW" && !yellowPressed && yellowBuzzSound) { // Check if loaded
+                document.getElementById("result").textContent = color + " PRESSED!";
+                yellowBuzzSound.play();
+                yellowPressed = true;
+                disableButtons();
+            }
+        }
+
+        // ... (rest of the JavaScript remains the same) ...
+
+    </script>
+</body>
+</html>
